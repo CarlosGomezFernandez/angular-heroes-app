@@ -16,10 +16,17 @@ export class HeroesService {
   constructor(private http: HttpClient) { }
 
   getHeroes(): Observable<Heroe[]> {
+    // http://localhost:3000/heroes
     return this.http.get<Heroe[]>(`${this.baseUrl}`);
   }
 
   getHeroePorId(id: string): Observable<Heroe> {
+    // http://localhost:3000/heroes/<id_superhero>
     return this.http.get<Heroe>(`${this.baseUrl}${id}`);
+  }
+
+  getSugerencias(termino: string): Observable<Heroe[]> {
+    // http://localhost:3000/heroes?q=<termino>&_limit=<items>
+    return this.http.get<Heroe[]>(`${this.baseUrl}?q=${termino}&_limit=6`);
   }
 }
